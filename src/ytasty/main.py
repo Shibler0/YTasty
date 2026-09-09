@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-
 from ytasty.db.base import Base
 from ytasty.db.database import engine
 from ytasty.modules.auth.router import router as auth_router
@@ -12,8 +11,7 @@ from ytasty.modules.restaurants.router import router as restaurants_router
 from ytasty.modules.users.model import User
 from ytasty.modules.users.router import router as users_router
 
-# Cette liste force le chargement de tous les modeles SQLAlchemy
-# avant la creation des tables.
+
 MODELS = [
     Restaurant,
     User,
