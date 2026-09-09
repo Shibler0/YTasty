@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 
 
 class OrderItemCreate(BaseModel):
@@ -8,7 +8,7 @@ class OrderItemCreate(BaseModel):
 
 class CustomerCreate(BaseModel):
     name: str
-    email: EmailStr
+    email: str
 
 
 class OrderCreate(BaseModel):
