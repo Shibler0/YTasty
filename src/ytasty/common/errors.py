@@ -2,19 +2,32 @@ NOT_FOUND_MESSAGE = "{resource} avec l'id {resource_id} est introuvable"
 
 
 class AppError(Exception):
-    """Erreur de base de l'application."""
+    pass
 
 
 class NotFoundError(AppError):
-    """Erreur levee lorsqu'une ressource n'existe pas."""
 
-    def __init__(self, resource: str, resource_id):
-        self.resource = resource
-        self.resource_id = resource_id
+    def __init__(self, message: str):
+        self.message = message
+        super().__init__(message)
 
-        message = NOT_FOUND_MESSAGE.format(
-            resource=resource,
-            resource_id=resource_id,
-        )
 
+class UnauthorizedError(AppError):
+
+    def __init__(self, message: str):
+        self.message = message
+        super().__init__(message)
+
+
+class ForbiddenError(AppError):
+
+    def __init__(self, message: str):
+        self.message = message
+        super().__init__(message)
+
+
+class BadRequestError(AppError):
+
+    def __init__(self, message: str):
+        self.message = message
         super().__init__(message)
