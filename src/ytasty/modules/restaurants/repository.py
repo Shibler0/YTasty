@@ -1,5 +1,5 @@
-"""Requetes SQLAlchemy du module restaurants.
+from ytasty.modules.restaurants.model import Restaurant
 
-Les fonctions de ce fichier parleront directement a la base de donnees.
-Aucune regle metier ne doit etre placee ici.
-"""
+
+def get_restaurants(db):
+    return db.query(Restaurant).all()

@@ -1,5 +1,4 @@
-"""Regles metier du module restaurants.
+from ytasty.modules.restaurants import repository
 
-Le service appelle le repository, verifie les regles metier,
-puis renvoie le resultat au router.
-"""
+def get_restaurants(db):
+    return repository.get_restaurants(db)
