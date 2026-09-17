@@ -1,5 +1,3 @@
-NOT_FOUND_MESSAGE = "{resource} avec l'id {resource_id} est introuvable"
-
 
 class AppError(Exception):
     pass
