@@ -1,31 +1,31 @@
 from ytasty.modules.restaurants.model import Restaurant
 
 
-def seed_restaurants(db):
+def init_restaurants(db):
     restaurants = [
         {
             "name": "Ytasty Crousty Aix",
             "city": "Aix-en-Provence",
-            "address": "Adresse à définir",
+            "address": "Adresse a définir",
             "is_open": True,
-            "opening_hours": "À définir",
-            "contact": "À définir",
+            "opening_hours": "A définir",
+            "contact": "A définir",
         },
         {
             "name": "Ytasty Crousty Lyon",
             "city": "Lyon",
-            "address": "Adresse à définir",
+            "address": "Adresse a définir",
             "is_open": True,
-            "opening_hours": "À définir",
-            "contact": "À définir",
+            "opening_hours": "A définir",
+            "contact": "A définir",
         },
         {
             "name": "Ytasty Crousty Paris",
             "city": "Paris",
-            "address": "Adresse à définir",
+            "address": "Adresse a définir",
             "is_open": True,
-            "opening_hours": "À définir",
-            "contact": "À définir",
+            "opening_hours": "A définir",
+            "contact": "A définir",
         },
     ]
 

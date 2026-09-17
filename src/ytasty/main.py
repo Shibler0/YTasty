@@ -9,7 +9,8 @@ from ytasty.common.errors import (
 )
 from ytasty.db.base import Base
 from ytasty.db.database import SessionLocal, engine
-from ytasty.db.initRestaurant import seed_restaurants
+from ytasty.db.initProduct import init_products
+from ytasty.db.initRestaurant import init_restaurants
 from ytasty.modules.auth.router import router as auth_router
 from ytasty.modules.orders.model import Order, OrderItem
 from ytasty.modules.orders.router import router as orders_router
@@ -36,7 +37,8 @@ Base.metadata.create_all(bind=engine)
 db = SessionLocal()
 
 try:
-    seed_restaurants(db)
+    init_restaurants(db)
+    init_products(db)
 finally:
     db.close()
 
