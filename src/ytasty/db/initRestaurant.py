@@ -1,3 +1,6 @@
+from ytasty.modules.restaurants.model import Restaurant
+
+
 def seed_restaurants(db):
     restaurants = [
         {
@@ -25,3 +28,14 @@ def seed_restaurants(db):
             "contact": "À définir",
         },
     ]
+
+    for restaurant_data in restaurants:
+        restaurant = db.query(Restaurant).filter(
+            Restaurant.name == restaurant_data["name"]
+        ).first()
+
+        if restaurant is None:
+            new_restaurant = Restaurant(**restaurant_data)
+            db.add(new_restaurant)
+
+    db.commit()
