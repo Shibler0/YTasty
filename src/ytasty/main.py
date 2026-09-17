@@ -1,15 +1,3 @@
-from fastapi import FastAPI
-from ytasty.db.base import Base
-from ytasty.db.database import engine
-from ytasty.modules.auth.router import router as auth_router
-from ytasty.modules.orders.model import Order, OrderItem
-from ytasty.modules.orders.router import router as orders_router
-from ytasty.modules.products.model import Product
-from ytasty.modules.products.router import router as products_router
-from ytasty.modules.restaurants.model import Restaurant
-from ytasty.modules.restaurants.router import router as restaurants_router
-from ytasty.modules.users.model import User
-from ytasty.modules.users.router import router as users_router
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
@@ -19,6 +7,18 @@ from ytasty.common.errors import (
     NotFoundError,
     UnauthorizedError,
 )
+from ytasty.db.base import Base
+from ytasty.db.database import SessionLocal, engine
+from ytasty.db.initRestaurant import seed_restaurants
+from ytasty.modules.auth.router import router as auth_router
+from ytasty.modules.orders.model import Order, OrderItem
+from ytasty.modules.orders.router import router as orders_router
+from ytasty.modules.products.model import Product
+from ytasty.modules.products.router import router as products_router
+from ytasty.modules.restaurants.model import Restaurant
+from ytasty.modules.restaurants.router import router as restaurants_router
+from ytasty.modules.users.model import User
+from ytasty.modules.users.router import router as users_router
 
 
 MODELS = [
@@ -29,12 +29,23 @@ MODELS = [
     OrderItem,
 ]
 
+
 Base.metadata.create_all(bind=engine)
+
+
+db = SessionLocal()
+
+try:
+    seed_restaurants(db)
+finally:
+    db.close()
+
 
 app = FastAPI(
     title="Ytasty Crousty API",
     version="1.0.0",
 )
+
 
 @app.exception_handler(NotFoundError)
 def not_found_handler(request: Request, error: NotFoundError):
