@@ -1,7 +1,5 @@
 from ytasty.modules.products.model import Product
 
-from ytasty.modules.products.model import Product
-
 
 def get_product(db, product_id: int):
     return db.query(Product).filter(
