@@ -13,3 +13,13 @@ router = APIRouter(
 @router.get("")
 def get_restaurants(db: Session = Depends(get_db)):
     return service.get_restaurants(db)
+
+@router.get("/{restaurant_id}")
+def get_restaurant_by_id(
+    restaurant_id: int,
+    db: Session = Depends(get_db),
+):
+    return service.get_restaurant_by_id(
+        db,
+        restaurant_id,
+    )
