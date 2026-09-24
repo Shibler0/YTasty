@@ -61,3 +61,13 @@ class UserCreate(BaseModel):
             )
 
         return role
+
+    class UserResponse(BaseModel):
+        id: int
+        first_name: str
+        last_name: str
+        username: str
+        role: str
+        restaurant_id: int | None
+
+        model_config = {"from_attributes": True}
