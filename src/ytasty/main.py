@@ -9,6 +9,7 @@ from ytasty.common.errors import (
 )
 from ytasty.db.base import Base
 from ytasty.db.database import SessionLocal, engine
+from ytasty.db.initAdmin import init_admin
 from ytasty.db.initProduct import init_products
 from ytasty.db.initRestaurant import init_restaurants
 from ytasty.modules.auth.router import router as auth_router
@@ -39,6 +40,7 @@ db = SessionLocal()
 try:
     init_restaurants(db)
     init_products(db)
+    init_admin(db)
 finally:
     db.close()
 

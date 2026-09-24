@@ -1,4 +1,7 @@
-"""Acces aux donnees necessaires a l'authentification.
+from ytasty.modules.users.model import User
 
-Par exemple, rechercher un utilisateur par son username.
-"""
+
+def get_user_by_username(db, username: str):
+    return db.query(User).filter(
+        User.username == username
+    ).first()
