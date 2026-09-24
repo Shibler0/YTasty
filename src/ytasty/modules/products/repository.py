@@ -32,3 +32,12 @@ def get_products(
         )
 
     return query.all()
+
+def create_product(db, data):
+    product = Product(**data.model_dump())
+
+    db.add(product)
+    db.commit()
+    db.refresh(product)
+
+    return product

@@ -14,3 +14,8 @@ class ProductCreate(BaseModel):
 
 class ProductAvailabilityUpdate(BaseModel):
     is_available: bool
+
+class ProductResponse(ProductCreate):
+    id: int
+
+    model_config = {"from_attributes": True}
