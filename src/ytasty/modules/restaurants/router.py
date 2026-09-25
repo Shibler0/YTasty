@@ -6,6 +6,7 @@ from ytasty.modules.auth.dependencies import get_current_user
 from ytasty.modules.restaurants.schemas import (
     RestaurantAvailabilityUpdate,
     RestaurantResponse,
+    RestaurantUpdate,
 )
 from ytasty.modules.users.model import User
 
@@ -28,6 +29,20 @@ def get_restaurant_by_id(
     return service.get_restaurant_by_id(
         db,
         restaurant_id,
+    )
+
+@router.patch("/{restaurant_id}", response_model=RestaurantResponse)
+def update_restaurant(
+    restaurant_id: int,
+    data: RestaurantUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    return service.update_restaurant(
+        db,
+        restaurant_id,
+        data,
+        current_user,
     )
 
 @router.patch("/{restaurant_id}/availability",response_model=RestaurantResponse,)

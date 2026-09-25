@@ -2,7 +2,10 @@ from pydantic import BaseModel
 
 
 class RestaurantUpdate(BaseModel):
+    name: str | None = None
+    city: str | None = None
     address: str | None = None
+    opening_hours: str | None = None
     contact: str | None = None
 
 

@@ -41,3 +41,16 @@ def create_product(db, data):
     db.refresh(product)
 
     return product
+
+def update_product(db, product, data: dict):
+    for field, value in data.items():
+        setattr(product, field, value)
+
+    db.commit()
+    db.refresh(product)
+
+    return product
+
+def delete_product(db, product):
+    db.delete(product)
+    db.commit()
